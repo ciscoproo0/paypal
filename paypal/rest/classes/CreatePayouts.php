@@ -2,7 +2,6 @@
 
 require_once 'Oauth.php';
 require_once 'CurlCommand.php';
-header('Content-type: application/json'); 
 
 $Payouts = new CreatePayouts();
 $Payouts->SendPayouts();
