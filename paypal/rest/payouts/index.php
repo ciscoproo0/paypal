@@ -44,8 +44,8 @@ require_once ("../../rest/classes/CreatePayment.php");
 <!-- #endregion -->
 
 <!-- #region Response Payouts Region -->
-    <center><button class="btn btn-primary" id="responseButton" name="responseButton">Payouts Response</button></center>    
-    <div id="responsePayouts" name="responsePayouts">  
+    <center><button class="btn btn-primary" id="responseButton">Payouts Response</button></center>    
+    <div id="responsePayouts">  
     </div>
 <!-- #endregion -->
 

@@ -1,9 +1,12 @@
-$('#payouts').submit(function(event){
-    event.preventDefault();
-    var $form = $(this), url = $form.attr('action');
-    var fields = $.post(url, {value: $('#value').val(), currency: $('#currency').val(), note: $('#note').val(), sender_item_id: $('#sender_item_id').val(), receiver: $('#receiver').val()});
-    
-    posting.done(function(data){
-        console.log(data);
-    });
+$('#payouts').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: '../../rest/classes/CreatePayouts.php',
+        type: 'post',
+        data: $('#payouts').serialize(),
+        success:function(message){
+            console.log(message);
+            $("#responsePayouts").show().html("<pre>" + JSON.stringify(message, null, 2) +"</pre>");
+        }
+    });        
 });
