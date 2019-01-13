@@ -1,0 +1,40 @@
+#paypal-button {
+    text-align: center;
+}
+
+#butaopramata{
+    background-color:#f44336;
+    color: #fff;
+}
+
+#killmessage{
+    color: red;
+    text-align: center;
+}
+h1{
+    text-align:center;
+}
+/*#ppplusform{*/
+/*    width:40%;*/
+/*    margin-right:2%;*/
+/*    margin-left:2%;*/
+/*    float: left;*/
+
+/*}*/
+#response{
+    color: "gray";
+    /*width:50%;*/
+    /*margin-right:2%;*/
+    /*margin-left:2%;*/
+    /*float: left;*/
+}
+
+.buttonCalls{
+    width:50%;
+    /*margin-right:2%;*/
+    /*margin-left:2%;*/
+    /*float: left;*/
+}
+/*#clearfix{*/
+/*    clear:both;*/
+/*}*/
