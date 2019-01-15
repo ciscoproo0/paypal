@@ -1,9 +1,13 @@
 <?php
 
+$payment = new createpayment();
+$payment->create();
 class createpayment{
     public function create(){
+
+        $bearer = $_POST['bearertoken'];
         $url = "https://api.sandbox.paypal.com/v1/payments/payment";
-        $headers = array("Content-Type: application/json", "Authorization: " .$bearer->getToken());
+        $headers = array("Content-Type: application/json", "Authorization: " .$bearer);
         $fields = json_encode(array(
           'intent' => 'sale',
           'payer' => 
@@ -16,10 +20,10 @@ class createpayment{
             array (
               'amount' => 
               array (
-                'total' => '180.00',
-                'currency' => 'BRL',
+                'total' => $_POST['amounttotal'],
+                'currency' => $_POST['amountcurrency'],
               ),
-              'description' => 'Pagamento server side',
+              'description' => $_POST['description'],
               'payment_options' => 
               array (
                 'allowed_payment_method' => 'IMMEDIATE_PAY',
@@ -30,25 +34,17 @@ class createpayment{
                 array (
                   0 => 
                   array (
-                    'name' => 'Chapéu',
-                    'description' => 'Chapéu azul',
-                    'quantity' => '1',
-                    'price' => '90.00',
-                    'currency' => 'BRL',
-                  ),
-                  1 => 
-                  array (
-                    'name' => 'Bolsa',
-                    'description' => 'Bolsa Azul',
-                    'quantity' => '1',
-                    'price' => '90.00',
-                    'currency' => 'BRL',
+                    'name' => $_POST['name'],
+                    'description' => $_POST['itemsdescription'],
+                    'quantity' => $_POST['quantity'],
+                    'price' => $_POST['price'],
+                    'currency' => $_POST['currency'],
                   ),
                 ),
               ),
             ),
           ),
-          'note_to_payer' => 'Se estiver lendo isso. Problema seu!',
+          'note_to_payer' => $_POST['note_to_payer'],
           'application_context' => 
           array (
             'shipping_preference' => 'NO_SHIPPING',
