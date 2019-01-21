@@ -84,7 +84,7 @@ require_once ("../../layouts/layout.php");
                     <input class="form-control" type="text" value="" id="bearertoken" name="bearertoken" hidden>
                 </div>          
             </div>
-            <center><button type="submit" class="btn btn-primary">create</button></center>
+            <center><button type="submit" class="btn btn-primary" id="createButton">create</button></center>
         </form>
     </div>
 <!-- #endregion -->
@@ -95,15 +95,21 @@ require_once ("../../layouts/layout.php");
 <!-- #endregion -->
 <hr>
 <!-- #region PayPal Plus -->
-    <div id="plus" hidden></div>
-    <center><button class="btn btn-info " type="submit" id="continueButton" onclick="ppp.doContinue(); return false;" hidden> Checkout </button></center>
+    <div id="ppplus"></div>
+    <center><button class="btn btn-info " type="submit" id="continueButton" onclick="ppp.doContinue(); return false;"> Checkout </button></center>
 <!-- #endregion -->
-
-<!-- #region Script hideDivs -->
+<hr>
+<!-- #region Response Execute -->
+    <center><div id="responseexecute"></div></center>
+<!-- #endregion -->
+<!-- #region Script hideDivs/Buttons -->
  <script type="text/javascript" name="hideDivs">
+        sessionStorage.clear();
         $(document).ready(function(){
             $('#create').hide();
             $('#responsecreate').hide();
+            //$('#ppplus').hide();
+            $('#continueButton').hide();
         });
     </script>
 <!-- #endretion -->
@@ -134,38 +140,47 @@ require_once ("../../layouts/layout.php");
 
 <!-- #region Create Payment -->
     <script type="text/javascript" name="calltoken">
+    var ppp = null;
         $('#createpayment').submit(function(e){
             e.preventDefault();
+                var approval = null;
                 $.ajax({
                     url: '../../rest/step/createpayment.php',
                     type: 'post',
                     data: $('#createpayment').serialize(),
                     success:function(message){
-                    console.log(JSON.parse(message));
-                    $("#responsecreate").show().html("<pre>" + JSON.stringify(message)+"</pre>");
+                    var response = JSON.parse(message);
+                    console.log(response);
+                    sessionStorage.setItem('execute', response.links[2].href);
 
-                    //Load PayPal Plus
-                    var approval = JSON.parse(message);
-                    //$('#plus').append('<div id="ppplus"></div>').attr('hidden', false);
-                    $('#continueButton').attr('hidden', false);
-                    $('#plus').attr('id', 'ppplus').attr('hidden', false);
-                    var ppp = PAYPAL.apps.PPP({
-                    approvalUrl: approval.links[1].href,
-                    country: "BR",
-                    language: "pt_BR",
-                    placeholder: "ppplus",
-                    mode: "sandbox",
-                    payerEmail: "franciscoteste@chicote.com",
-                    payerFirstName: "Chico",
-                    payerLastName: "do teste Silva",
-                    payerTaxId: "42648123059",
-                    payerTaxIdType: "BR_CPF",
-                    payerPhone: "11970638989"
-                });
+                    $("#responsecreate").show().html("<pre>" + JSON.stringify(response, null, 2)+"</pre>");
+                    $('#continueButton').show();
+                    //$('#ppplus').show().css('height', '500px');
+                    //$('iframe').css('height', '500px');
+                    //var ppobj = sessionStorage.getItem('ppobj');  
+                        ppp = PAYPAL.apps.PPP({
+                        approvalUrl: response.links[1].href,
+                        country: "BR",
+                        language: "pt_BR",
+                        placeholder: "ppplus",
+                        mode: "sandbox",
+                        payerEmail: "franciscoteste@chicote.com",
+                        payerFirstName: "Chico",
+                        payerLastName: "do teste Silva",
+                        payerTaxId: "42648123059",
+                        payerTaxIdType: "BR_CPF",
+                        payerPhone: "11970638989"
+                    });
                 }
             });
         });
     </script>
 <!-- #endregion -->
 
+<!-- #region PPPlus obj -->
 
+<!-- #endregion -->
+
+<!-- #region Listener -->
+    <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']?>/rest/step/pluslistener.js"></script>
+<!-- #endregion -->
