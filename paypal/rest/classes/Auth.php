@@ -3,18 +3,18 @@
 require_once 'Oauth.php';
 require_once 'CurlCommand.php';
 
-$payment = new CreatePayment();
-$payment->PayPalCheckout();
+$payment = new Auth();
+$payment->Authorize();
 
-class CreatePayment{
+class Auth{
 
-    public  function PayPalCheckout(){
+    public  function Authorize(){
         $bearer = new Oauth();
         $callAPI = new CurlCommand();
         $url = "https://api.sandbox.paypal.com/v1/payments/payment";
         $headers = array("Content-Type: application/json", "Authorization: " .$bearer->getToken());
         $fields = json_encode(array(
-          'intent' => 'sale',
+          'intent' => 'authorize',
           'payer' => 
           array (
             'payment_method' => 'paypal',
@@ -25,10 +25,10 @@ class CreatePayment{
             array (
               'amount' => 
               array (
-                'total' => '180.00',
+                'total' => '120.00',
                 'currency' => 'BRL',
               ),
-              'description' => 'Pagamento server side',
+              'description' => 'Pagamento com autorização',
               'payment_options' => 
               array (
                 'allowed_payment_method' => 'IMMEDIATE_PAY',
@@ -42,7 +42,7 @@ class CreatePayment{
                     'name' => 'Chapéu',
                     'description' => 'Chapéu azul',
                     'quantity' => '1',
-                    'price' => '90.00',
+                    'price' => '60.00',
                     'currency' => 'BRL',
                   ),
                   1 => 
@@ -50,14 +50,14 @@ class CreatePayment{
                     'name' => 'Bolsa',
                     'description' => 'Bolsa Azul',
                     'quantity' => '1',
-                    'price' => '90.00',
+                    'price' => '60.00',
                     'currency' => 'BRL',
                   ),
                 ),
               ),
             ),
           ),
-          'note_to_payer' => 'Pagamento com captura imediata',
+          'note_to_payer' => 'Amostra de autorização',
           'application_context' => 
           array (
             'shipping_preference' => 'NO_SHIPPING',
@@ -69,22 +69,19 @@ class CreatePayment{
           ),
         ));
 
-        $response = $callAPI->RunCurl($url, $headers, $fields);
-  
         if(isset($_GET['action'])) {
           $action = $_GET['action'];
-        
-        if ($action == "PayPalCheckout") {
-          echo $response;
-        
+
+          if($action = 'requestCreate'){
+            header('Content-type: application/json');
+            echo $fields;            
           }
         }else{
-          $approval = json_decode($response);
-          $_SESSION['createpayment'] = $approval;
-          $_SESSION['approval'] = $approval->links[1]->href;
-          $_SESSION['execute'] = $approval->id;
-          $_SESSION['requestpayment'] = json_decode($fields, true);
-          return $approval->links[1]->href;
+        $execute = $callAPI->RunCurl($url, $headers, $fields);
+
+          $response = json_decode($execute);
+          $_SESSION['authid'] = $response->id;
+          echo $execute;
         }
   }
 }

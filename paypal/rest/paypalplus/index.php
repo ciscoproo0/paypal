@@ -11,7 +11,7 @@ require_once ("../../rest/classes/CreatePayment.php");
 
 <body>
 
-<h1>PayPal Plus</h1>
+<center><h3>PayPal Plus</h3></center>
 
 <div class="container-fluid">
 </br>

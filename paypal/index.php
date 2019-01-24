@@ -17,3 +17,7 @@ session_start();
 
 <center><h3><a href="http://<?php echo $_SERVER['HTTP_HOST']?>/rest/payouts/index.php">Payouts</h3></center>
 
+</br>
+
+<center><h3><a href="http://<?php echo $_SERVER['HTTP_HOST']?>/rest/authcap/index.php">Authorization and Capture</h3></center>
+

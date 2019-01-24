@@ -11,7 +11,7 @@ require_once ("../../rest/classes/CreatePayment.php");
 
 <body>
 
-<h1>Payouts</h1>
+<center><h3>Payouts</h3></center>
 </br>
 
 <!-- #region Form Payouts -->
