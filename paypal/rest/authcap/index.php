@@ -50,11 +50,22 @@ require ("../../layouts/layout.php");
             <button class="btn btn-info buttonCalls" id="requestExecuteButton">Request</button>
                 <div id="requestExecute">
                 </div>
-                </br>
-                </br>
+            </br>
+            </br>
             <button class="btn btn-info buttonCalls" id="responseExecuteButton">Response</button>
                 <div id="responseExecute">
+                </div>
 
+            </br>
+            </br>
+            <h4>Request-Response Capture Payment</h4>
+            <button class="btn btn-info buttonCalls" id="requestCaptureButton">Request</button>
+                <div id="requestCapture">
+                </div>
+            </br>
+            </br>
+            <button class="btn btn-info buttonCalls" id="responseCaptureButton">Response</button>
+                <div id="responseCapture">
                 </div>
         </div>
     <!-- #endregion -->
@@ -71,6 +82,7 @@ require ("../../layouts/layout.php");
         <script type="text/javascript" name="CollapseButtons">
                 $(document).ready(function(){
                     $('#captureButton').hide();
+
                     $('#requestCreate').hide();
                     $('#requestCreateButton').click(function(){
                         $('#requestCreate').toggle("slow"); 
@@ -90,7 +102,47 @@ require ("../../layouts/layout.php");
                     $('#responseExecuteButton').click(function(){
                         $('#responseExecute').toggle("slow"); 
                     });
+
+                    $('#requestCapture').hide();
+                    $('#requestCaptureButton').click(function(){
+                        $('#requestCapture').toggle("slow"); 
+                    });
+
+                    $('#responseCapture').hide();
+                    $('#responseCaptureButton').click(function(){
+                        $('#responseCapture').toggle("slow"); 
+                    });
                     
+            });
+        </script>
+    <!-- #endregion -->
+
+    <!-- #region Script Capture Action -->
+        <script>
+            $('#captureButton').click(function(){
+                $.ajax({
+                url: CaptureRequestPath,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response){
+                    $("#requestCapture").html("<pre>"+JSON.stringify(response, null, 2)+"</pre>");
+                    console.log("---------- Request from Capture Payment ----------");
+                    console.log(response);
+                    $.ajax({
+                    url: CaptureResponsePath,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {authid: authID},
+                    success: function(response){
+                        $("#responseCapture").html("<pre>"+JSON.stringify(response, null, 2)+"</pre>");
+                        console.log("---------- Response from Capture Payment ----------");
+                        console.log(response);
+                    },
+                    error: function(err){console.log(err);}
+                    });
+                },
+                error: function(err){console.log(err);}
+                });
             });
         </script>
     <!-- #endregion -->

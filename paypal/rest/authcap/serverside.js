@@ -2,10 +2,14 @@ var hostName = window.location.origin;
 
 var pathCreate ="/rest/classes/Auth.php";
 var pathExecute ="/rest/classes/ExecutePayment.php";
+var pathCapture = "/rest/classes/Capture.php"
 
 var CreatePaymentPath = hostName+pathCreate;
 var ExecutePaymentPath = hostName+pathExecute;
 var CreateResponsePath = CreatePaymentPath + "?action=requestCreate";
+var CaptureRequestPath = pathCapture + "?action=requestCapture";
+var CaptureResponsePath = pathCapture;
+var authID = null;
 
 paypal.Button.render({
     env: 'sandbox',
@@ -20,24 +24,25 @@ paypal.Button.render({
 
     //Set up payment with CreatePayment Path
     payment: function(data, actions) {
+      $.ajax({
+        url: CreateResponsePath,
+        type: 'GET',
+        dataType: 'json',
+        success: function(response){
 
-      return actions.request.post(CreatePaymentPath).then(function(res) {
-
+          console.log("---------- Request from Create Payment ----------");
+          console.log(response);
+          //populates Div with Json
+          $("#requestCreate").html("<pre>"+JSON.stringify(response, null, 2)+"</pre>");
+        },
+        error: function(err){console.log(err);}
+      });  
+      return actions.request.post(CreatePaymentPath).then(function(response) {
+          //populates Div with Json
           console.log("---------- Response from Create Payment ----------");
-          console.log(res);
-            $.ajax({
-              url: CreateResponsePath,
-              type: 'GET',
-              dataType: 'json',
-              success: function(response){
-                //populates Div with Json
-                $("#requestCreate").html("<pre>"+JSON.stringify(response, null, 2)+"</pre>");
-              },
-              error: function(err){console.log(err);}
-            });          
-          //populates Div with Json       
-          $("#responseCreate").html("<pre>"+JSON.stringify(res, null, 2)+"</pre>");
-          return res.id;
+          console.log(response);    
+          $("#responseCreate").html("<pre>"+JSON.stringify(response, null, 2)+"</pre>");
+          return response.id;
         });
       },
 
@@ -49,7 +54,7 @@ paypal.Button.render({
         }
 
         console.log("---------- Request from Execute Payment ----------");
-        console.log(JSON.stringify(request));
+        console.log(request);
         
         //populates Div with Json
         $("#requestExecute").html("<pre>"+JSON.stringify(request, null, 2)+"</pre>");
@@ -57,17 +62,13 @@ paypal.Button.render({
         return actions.request.post(ExecutePaymentPath, {
         paymentID: data.paymentID,
         payerID:   data.payerID
-      }).then(function(res) {
+      }).then(function(response) {
 
           console.log("---------- Response from Execute Payment ----------");
-          console.log(res);
-          $("#responseExecute").html("<pre>"+JSON.stringify(res, null, 2)+"</pre>");
+          console.log(response);
+          $("#responseExecute").html("<pre>"+JSON.stringify(response, null, 2)+"</pre>");
           $("#captureButton").show();
-          var resobj = res;
-          var saleID = resobj.transactions['0'].related_resources['0'].sale['id']; 
-          var state = resobj.transactions['0'].related_resources['0'].sale['state'];
-            console.log(resobj);
-            console.log(saleID);
+          authID = response.transactions['0'].related_resources['0'].authorization['id'];          
         });
     }
   }, '#paypal-button');

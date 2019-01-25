@@ -71,7 +71,7 @@ class CreatePayment{
 
         $response = $callAPI->RunCurl($url, $headers, $fields);
   
-        if(isset($_GET['action'])) {
+        if(isset($_GET['action']) && !empty($_GET['action'])) {
           $action = $_GET['action'];
         
         if ($action == "PayPalCheckout") {

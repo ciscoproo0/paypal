@@ -69,7 +69,7 @@ class Auth{
           ),
         ));
 
-        if(isset($_GET['action'])) {
+        if(isset($_GET['action']) && !empty($_GET['action'])) {
           $action = $_GET['action'];
 
           if($action = 'requestCreate'){
@@ -78,10 +78,8 @@ class Auth{
           }
         }else{
         $execute = $callAPI->RunCurl($url, $headers, $fields);
-
-          $response = json_decode($execute);
-          $_SESSION['authid'] = $response->id;
-          echo $execute;
+        
+        echo $execute;
         }
   }
 }
