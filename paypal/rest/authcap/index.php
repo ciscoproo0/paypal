@@ -72,12 +72,6 @@ require ("../../layouts/layout.php");
 
     </div>
 
-    <!-- #region SessionStorages -->
-        <script id="sessionstorage">
-        </script>
-    <!-- #endregion -->
-
-
     <!-- #region Script CollapseButtons -->
         <script type="text/javascript" name="CollapseButtons">
                 $(document).ready(function(){
