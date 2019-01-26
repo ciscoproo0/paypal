@@ -2,14 +2,11 @@
     $_SESSION['IPN'] = $_POST;
 
     $ipn = $_SESSION['IPN'];
+    
+    $responseNvp = explode('&', $ipn);    
 
-    $responseNvp = array();
- 
-    if (preg_match_all('/(?<name>[^\=]+)\=(?<value>[^&]+)&?/', $ipn, $matches)) {
-        foreach ($matches['name'] as $offset => $name) {
-            $responseNvp[$name] = $matches['value'][$offset];
-        }
+    foreach ($responseNvp as $key => $value){
+        echo "<li>$key: $value</li>";
     }
 
-    echo $responseNvp;
 ?>
