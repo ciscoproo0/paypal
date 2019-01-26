@@ -1,5 +1,5 @@
 <?php
-    $_SESSION['IPN'] = $_POST;
+    $_SESSION['IPN'] = file_get_contents('php://input');
 
     $ipn = $_SESSION['IPN'];
     
