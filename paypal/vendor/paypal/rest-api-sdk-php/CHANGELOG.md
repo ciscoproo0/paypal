@@ -3,67 +3,67 @@ PayPal PHP SDK release notes
 
 1.14.0
 -----
-* Update sdk_config.ini log.LogLevel comments [#983](https://github.com/PayPal-PHP-SDK/pull/983).
-* Update RefundCapture.php [#998](https://github.com/PayPal-PHP-SDK/pull/998).
-* update readme for direct credit card restriction [#1019](https://github.com/PayPal-PHP-SDK/pull/1019).
-* Add PHP 7.1 and 7.2 in travis build [#1061](https://github.com/PayPal-PHP-SDK/pull/1061).
-* Custom cache directory line was not written [#1062](https://github.com/PayPal-PHP-SDK/pull/1062).
-* Re-Order the array keys so that JSON will be an array, not an object [#1034](https://github.com/PayPal-PHP-SDK/pull/1034).
-* Refactoring tests [#1011](https://github.com/PayPal-PHP-SDK/pull/1011).
-* Added condition to ignore extra header [#1060](https://github.com/PayPal-PHP-SDK/pull/1060).
-* Fix links to Developer API Reference [#1095](https://github.com/PayPal-PHP-SDK/pull/1095).
+* Update sdk_config.ini log.LogLevel comments [#983](https://github.com/paypal/PayPal-PHP-SDK/pull/983).
+* Update RefundCapture.php [#998](https://github.com/paypal/PayPal-PHP-SDK/pull/998).
+* update readme for direct credit card restriction [#1019](https://github.com/paypal/PayPal-PHP-SDK/pull/1019).
+* Add PHP 7.1 and 7.2 in travis build [#1061](https://github.com/paypal/PayPal-PHP-SDK/pull/1061).
+* Custom cache directory line was not written [#1062](https://github.com/paypal/PayPal-PHP-SDK/pull/1062).
+* Re-Order the array keys so that JSON will be an array, not an object [#1034](https://github.com/paypal/PayPal-PHP-SDK/pull/1034).
+* Refactoring tests [#1011](https://github.com/paypal/PayPal-PHP-SDK/pull/1011).
+* Added condition to ignore extra header [#1060](https://github.com/paypal/PayPal-PHP-SDK/pull/1060).
+* Fix links to Developer API Reference [#1095](https://github.com/paypal/PayPal-PHP-SDK/pull/1095).
 * adding target subject to the generate access token call.
 
 1.13.0
 -----
-* Add HUF as a non-decimal currency [#974](https://github.com/PayPal-PHP-SDK/pull/974).
-* Add `purchaseOrder` in `CartBase` [#939](https://github.com/PayPal-PHP-SDK/pull/939).
-* Fixed annotation bug [#872](https://github.com/PayPal-PHP-SDK/pull/872).
-* Update PHPUnit [#979](https://github.com/PayPal-PHP-SDK/pull/979).
+* Add HUF as a non-decimal currency [#974](https://github.com/paypal/PayPal-PHP-SDK/pull/974).
+* Add `purchaseOrder` in `CartBase` [#939](https://github.com/paypal/PayPal-PHP-SDK/pull/939).
+* Fixed annotation bug [#872](https://github.com/paypal/PayPal-PHP-SDK/pull/872).
+* Update PHPUnit [#979](https://github.com/paypal/PayPal-PHP-SDK/pull/979).
 
 1.12.0
 -----
 * Add `getToken` method to `Payment` class to retrieve EC token from approval URL.
-* Add TLSv1.2 to cipher list [#844](https://github.com/PayPal-PHP-SDK/pull/844).
-* Use restCall object for function that makes REST requests [#841](https://github.com/PayPal-PHP-SDK/pull/841).
-* Minor bugfixes [#766](https://github.com/PayPal-PHP-SDK/issues/766), [#798](https://github.com/PayPal-PHP-SDK/issues/798), [#845](https://github.com/PayPal-PHP-SDK/pull/845).
+* Add TLSv1.2 to cipher list [#844](https://github.com/paypal/PayPal-PHP-SDK/pull/844).
+* Use restCall object for function that makes REST requests [#841](https://github.com/paypal/PayPal-PHP-SDK/pull/841).
+* Minor bugfixes [#766](https://github.com/paypal/PayPal-PHP-SDK/issues/766), [#798](https://github.com/paypal/PayPal-PHP-SDK/issues/798), [#845](https://github.com/paypal/PayPal-PHP-SDK/pull/845).
 * Updated samples.
 
 1.11.0
 -----
 * Update third party payment sample with PayPal payment.
-* Prevent error in SSL version check if curl is not available [#706](https://github.com/PayPal-PHP-SDK/pull/706).
-* Stop auto-generating PayPal-Request-Id header values and allow SDK users to optionally set the value [#747](https://github.com/PayPal-PHP-SDK/pull/747).
-* Remove automatic retries on failed requests [#747](https://github.com/PayPal-PHP-SDK/pull/747).
+* Prevent error in SSL version check if curl is not available [#706](https://github.com/paypal/PayPal-PHP-SDK/pull/706).
+* Stop auto-generating PayPal-Request-Id header values and allow SDK users to optionally set the value [#747](https://github.com/paypal/PayPal-PHP-SDK/pull/747).
+* Remove automatic retries on failed requests [#747](https://github.com/paypal/PayPal-PHP-SDK/pull/747).
 
 1.10.0
 -----
-* Updated Payments APIs [#700](https://github.com/PayPal-PHP-SDK/pull/700).
+* Updated Payments APIs [#700](https://github.com/paypal/PayPal-PHP-SDK/pull/700).
 * Minor bug fixes.
 
 1.9.0
 -----
-* Updated Payouts APIs [#692](https://github.com/PayPal-PHP-SDK/pull/692).
-* Updated Payment Experience APIs [#682](https://github.com/PayPal-PHP-SDK/pull/682).
-* Updated Payments API to use Payment Card instead of credit card [#696](https://github.com/PayPal-PHP-SDK/pull/696).
-* Fixed bug on failed Access token call. [#665](https://github.com/PayPal-PHP-SDK/pull/665).
+* Updated Payouts APIs [#692](https://github.com/paypal/PayPal-PHP-SDK/pull/692).
+* Updated Payment Experience APIs [#682](https://github.com/paypal/PayPal-PHP-SDK/pull/682).
+* Updated Payments API to use Payment Card instead of credit card [#696](https://github.com/paypal/PayPal-PHP-SDK/pull/696).
+* Fixed bug on failed Access token call. [#665](https://github.com/paypal/PayPal-PHP-SDK/pull/665).
 
 1.8.0
 -----
-* Updated Webhooks APIs [#653](https://github.com/PayPal-PHP-SDK/pull/653).
-* Updated Invoicing APIs [#657](https://github.com/PayPal-PHP-SDK/pull/657).
-* UTF-8 encoding bug fix [#655](https://github.com/PayPal-PHP-SDK/pull/655).
-* Updated PSR log [#654](https://github.com/PayPal-PHP-SDK/pull/654).
+* Updated Webhooks APIs [#653](https://github.com/paypal/PayPal-PHP-SDK/pull/653).
+* Updated Invoicing APIs [#657](https://github.com/paypal/PayPal-PHP-SDK/pull/657).
+* UTF-8 encoding bug fix [#655](https://github.com/paypal/PayPal-PHP-SDK/pull/655).
+* Updated PSR log [#654](https://github.com/paypal/PayPal-PHP-SDK/pull/654).
 
 1.7.4
 -----
-*  Fixed Duplicate conditional expression in PayPalCredentialManager.php [#594](https://github.com/PayPal-PHP-SDK/pull/594).
-*  Updated Invoicing APIs [#605](https://github.com/PayPal-PHP-SDK/pull/605).
-*  Fixed PSR code style errors [#607](https://github.com/PayPal-PHP-SDK/pull/607).
+*  Fixed Duplicate conditional expression in PayPalCredentialManager.php [#594](https://github.com/paypal/PayPal-PHP-SDK/pull/594).
+*  Updated Invoicing APIs [#605](https://github.com/paypal/PayPal-PHP-SDK/pull/605).
+*  Fixed PSR code style errors [#607](https://github.com/paypal/PayPal-PHP-SDK/pull/607).
 
 1.7.3
 -----
-* Enabled Third Party Invoicing [#581](https://github.com/PayPal-PHP-SDK/pull/581).
+* Enabled Third Party Invoicing [#581](https://github.com/paypal/PayPal-PHP-SDK/pull/581).
 
 1.7.2
 ----

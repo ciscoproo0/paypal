@@ -4,8 +4,8 @@ require_once '../Oauth.php';
 require_once '../CurlCommand.php';
 header('Content-type: application/json'); 
 
-$cfo = new CalculatedFinancingOptions();
-$cfo->Execute();
+// $cfo = new CalculatedFinancingOptions();
+// $cfo->Execute();
 
 class CalculatedFinancingOptions{
     public function Execute(){
@@ -25,12 +25,12 @@ class CalculatedFinancingOptions{
               'type' => 'BILLING_AGREEMENT',
               'billing_agreement' => 
               array (
-                'billing_agreement_id' => 'B-34F52062K6982543Y',
+                'billing_agreement_id' => 'B-0CF53331EH4539335',
               ),
             ),
           ));
           $response = $callAPI->RunCurl($url, $headers, $fields);
-          echo $response;
+          return $response;
 
     }
 }

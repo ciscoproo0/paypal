@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "PayPal",
-            "homepage": "https://github.com/rest-api-sdk-php/contributors"
+            "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
         }
     ],
     "require": {

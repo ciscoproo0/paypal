@@ -2,7 +2,6 @@
 
 require_once '../Oauth.php';
 require_once '../CurlCommand.php';
-require_once '../STC.php';
 header('Content-type: application/json'); 
 
 $agreementToken = new ExecuteAgreement();
@@ -12,7 +11,12 @@ class ExecuteAgreement{
     public function Execute(){
         $bearer = new Oauth();
         $callAPI = new CurlCommand();
-        $stc = new STC();
+        if(isset($_GET) && !empty($_GET)) {
+          $bid = "BillingID";
+        }else{
+          $bid = $_POST['billingID'];
+        }
+        //$stc = new STC();
         $url = "https://api.sandbox.paypal.com/v1/payments/payment";
         $headers = array("Content-Type: application/json", "Authorization: " .$bearer->getToken());
         $fields = json_encode(array (
@@ -26,7 +30,7 @@ class ExecuteAgreement{
                 array (
                   'billing' => 
                   array (
-                    'billing_agreement_id' => 'B-34F52062K6982543Y',
+                    'billing_agreement_id' => $bid,
                   ),
                 ),
               ),
@@ -41,6 +45,7 @@ class ExecuteAgreement{
                   'currency' => 'BRL',
                 ),
                 'description' => 'Pagamento Tokenizado',
+                'invoice_number' => 'INVOICE5',
                 'payment_options' => 
                 array (
                   'allowed_payment_method' => 'IMMEDIATE_PAY',
@@ -81,9 +86,18 @@ class ExecuteAgreement{
             ),
           ));
         
-        $response = $callAPI->RunCurl($url, $headers, $fields);
         //$stc->Execute();
-        echo $response;
+        if(isset($_GET['action']) && !empty($_GET['action'])) {
+          $action = $_GET['action'];
+
+          if($action = 'requestExecute'){
+            header('Content-type: application/json');
+            echo $fields;            
+          }
+        }else{
+        $execute = $callAPI->RunCurl($url, $headers, $fields);
+        echo $execute;
+        }
     }
 }
 

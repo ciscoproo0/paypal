@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $apiContext = new \PayPal\Rest\ApiContext(new \PayPal\Auth\OAuthTokenCredential('AQMvz-l3XHRLi2aHA0oSANfks5l-VwwS40Los6JPnGCLFceyXAN1LTnharyA0s5GrsFjYhh2iNxpeNrj', 'EDjYV3HndXdvNAbTYRcmSX9oZBHYFzqciEaasVUJd4Huez84IJCmtKZ1N_IM4Vs6Gh3BE_CX0NYxf4eD'));
 
@@ -23,6 +23,7 @@ $payment->setIntent('sale')
     ->setPayer($payer)
     ->setTransactions(array($transaction))
     ->setRedirectUrls($redirectUrls);
+// $payment->application_context = new PayPalModel(array("shipping_preference" => "NO_SHIPPING"));
 
     try {
         $payment->create($apiContext);

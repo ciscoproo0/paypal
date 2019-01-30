@@ -1,4 +1,4 @@
-<!-- ** General notice: if you have an API issue, see our [REST API issues](https://github.com/PayPal-REST-API-issues) repository, or contact [PayPal Tech Support](https://developer.paypal.com/support/). ** -->
+<!-- ** General notice: if you have an API issue, see our [REST API issues](https://github.com/paypal/PayPal-REST-API-issues) repository, or contact [PayPal Tech Support](https://developer.paypal.com/support/). ** -->
 ### General information
 
 * SDK/Library version: <!-- Example: 4.7.2 -->

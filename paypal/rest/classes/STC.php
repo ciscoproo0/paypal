@@ -11,7 +11,7 @@ class STC{
     public function Execute(){
         $bearer = new Oauth();
         $callAPI = new CurlCommand();
-        $url = "https://api.sandbox.paypal.com/v1/risk/transaction-contexts/INVOICE1/B-34F52062K6982543Y";
+        $url = "https://api.sandbox.paypal.com/v1/risk/transaction-contexts/H3PTLMXRF9FHC/INVOICE4";
         $method = "PUT";
         $headers = array("Content-Type: application/json", "Authorization: " .$bearer->getToken());
         $fields = json_encode(array (

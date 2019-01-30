@@ -35,9 +35,17 @@ class AgreementToken{
             ),
           ));
 
-
-        $response = $callAPI->RunCurl($url, $headers, $fields);
-        echo $response;
+          if(isset($_GET['action']) && !empty($_GET['action'])) {
+            $action = $_GET['action'];
+  
+            if($action = 'requestBillingToken'){
+              header('Content-type: application/json');
+              echo $fields;            
+            }
+          }else{
+          $execute = $callAPI->RunCurl($url, $headers, $fields);
+          echo $execute;
+          }
     }
 }
 ?>
