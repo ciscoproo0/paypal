@@ -22,11 +22,13 @@ paypal.Button.render({
     //Set up payment with CreatePayment Path
     payment: function(data, actions) {
 
-      return actions.request.post(CreatePaymentPath)
-        .then(function(res) {
-          console.log(res);
-          return res.id;
-        });
+      return "EC-6WA905011C847494K";
+
+      // return actions.request.post(CreatePaymentPath)
+      //   .then(function(res) {
+      //     console.log(res);
+      //     return res.id;
+      //   });
       },
 
     //execute payment wit ExecutePayment Path
