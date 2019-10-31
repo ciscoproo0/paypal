@@ -36,10 +36,8 @@ class server{
         'paymentMethodNonce' => $nonce
         ]);
         if ($result->success) {
-            echo "ID";
-        echo($result->customer->id);
-            echo "token";
-        echo($result->customer->paymentMethods[0]->token);
+        print_r($result->customer->id);
+        print_r($result->customer->paymentMethods[0]->token);
         } else {
             foreach($result->errors->deepAll() AS $error) {
                 echo($error->code . ": " . $error->message . "\n");
