@@ -49,7 +49,7 @@ class server{
        //     "merchantAccountID" => "BRL",
        //     "paymentMethodNonce" => $nonce
        // ]);
-        //file_put_contents('../../responsebt.txt', $result);
+        file_put_contents('../../responsebt.txt', $result);
         //if($result->success){
        //     print_r("Success ID" . $result->transaction->id);
        // }else{
