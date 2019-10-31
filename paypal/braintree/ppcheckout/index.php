@@ -42,7 +42,7 @@ require ("../../layouts/layout.php");
 
                                 payment: function (data, actions){
                                     return actions.braintree.create({
-                                        flow: 'checkout',
+                                        flow: 'vault',
                                         amount:'10.00',
                                         currency: 'BRL',
                                         enableShippingAddress: false
