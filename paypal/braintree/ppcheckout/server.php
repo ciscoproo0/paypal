@@ -28,17 +28,33 @@ class server{
         $nonce = $_POST['nonce_'];
 
         $gateway = new Braintree_Gateway(['accessToken' => 'access_token$sandbox$5svrddpy8s3mx4jw$d0190491ecb39683ca118b73bf4061b7']);
-        $result = $gateway->transaction()->sale([
-            "amount" => "10.00",
-            "merchantAccountID" => "BRL",
-            "paymentMethodNonce" => $nonce
+        
+        $result = $gateway->customer()->create([
+        'firstName' => 'Mike',
+        'lastName' => 'Jones',
+        'company' => 'Jones Co.',
+        'paymentMethodNonce' => $nonce
         ]);
-        file_put_contents('../../responsebt.txt', $result);
-        if($result->success){
-            print_r("Success ID" . $result->transaction->id);
-        }else{
-            print_r("Error Message: ". $result->message);
+        if ($result->success) {
+        echo($result->customer->id);
+        echo($result->customer->paymentMethods[0]->token);
+        } else {
+            foreach($result->errors->deepAll() AS $error) {
+                echo($error->code . ": " . $error->message . "\n");
+            }
         }
+        
+       // $result = $gateway->transaction()->sale([
+       //     "amount" => "10.00",
+       //     "merchantAccountID" => "BRL",
+       //     "paymentMethodNonce" => $nonce
+       // ]);
+       // file_put_contents('../../responsebt.txt', $result);
+        //if($result->success){
+       //     print_r("Success ID" . $result->transaction->id);
+       // }else{
+       //     print_r("Error Message: ". $result->message);
+       // }
     }
 }
 
