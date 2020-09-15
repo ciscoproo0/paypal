@@ -45,7 +45,7 @@ class ExecuteAgreement{
                   'currency' => 'BRL',
                 ),
                 'description' => 'Pagamento Tokenizado',
-                'invoice_number' => 'INVOICE5',
+                //'invoice_number' => 'INVOICE5',
                 'payment_options' => 
                 array (
                   'allowed_payment_method' => 'IMMEDIATE_PAY',
